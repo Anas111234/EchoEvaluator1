@@ -2,10 +2,12 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    await mongoose.connect("mongodb://127.0.0.1:27017/mern-form");
+    const uri = process.env.MONGO_URI;
+    console.log('Connecting to MongoDB:', uri); // Optional: for debugging
+    await mongoose.connect(uri);
     console.log('MongoDB Connected');
   } catch (err) {
-    console.error(err.message);
+    console.error('MongoDB connection error:', err.message);
     process.exit(1);
   }
 };
