@@ -8,10 +8,26 @@ require('dotenv').config();
 
 const app = express();
 
+// Allow specific origins (update these as needed)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://echoevaluatorr.onrender.com" // your actual frontend on Render
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+}));
+
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-
 
 // Connect to MongoDB
 connectDB();
