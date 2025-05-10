@@ -8,11 +8,10 @@ require('dotenv').config();
 
 const app = express();
 
-// Allow specific origins (update these as needed)
+// CORS Setup
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://echoevaluatorr.onrender.com",
-  "https://frontend-echoevaluator-kruj.onrender.com"
+  process.env.CORS_ORIGIN,
 ];
 
 app.use(cors({
@@ -27,8 +26,6 @@ app.use(cors({
   credentials: true,
 }));
 
-
-
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
@@ -39,10 +36,9 @@ connectDB();
 // API Routes
 app.use('/auth', authRoutes);
 
-// Serve frontend (React build from Vite)
+// Serve Frontend
 const frontendPath = path.join(__dirname, '../frontend/dist');
 app.use(express.static(frontendPath));
-
 app.get('*', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
