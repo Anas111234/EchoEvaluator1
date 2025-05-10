@@ -11,7 +11,8 @@ const app = express();
 // Allow specific origins (update these as needed)
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://echoevaluatorr.onrender.com" // your actual frontend on Render
+  "https://echoevaluatorr.onrender.com",
+  "https://frontend-echoevaluator-kruj.onrender.com"
 ];
 
 app.use(cors({
@@ -24,6 +25,7 @@ app.use(cors({
   },
   credentials: true,
 }));
+
 
 // Middleware
 app.use(express.json());
