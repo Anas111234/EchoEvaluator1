@@ -65,7 +65,7 @@ const ForgotPassword = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/auth/reset-password', {
+      const response = await axios.post('https://echoevaluatorr.onrender.com/auth/reset-password', {
         email,
         securityAnswer,
         newPassword,
