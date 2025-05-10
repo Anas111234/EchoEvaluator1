@@ -37,11 +37,14 @@ connectDB();
 app.use('/auth', authRoutes);
 
 // Serve Frontend
-const frontendPath = path.join(__dirname, '../frontend/dist');
+// Serve frontend (React build)
+const frontendPath = path.join(__dirname, 'frontend/dist');
 app.use(express.static(frontendPath));
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
+
 
 // Start Server
 const PORT = process.env.PORT || 3001;
